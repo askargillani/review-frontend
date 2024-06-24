@@ -1,0 +1,15 @@
+<div class="header-container">
+    <div class="left-container">
+        <img src="../../../assets/images/logo.svg" alt="" class="logo">
+        <p class="logo-text">GenReview</p>
+    </div>
+    <div class="right-container">
+        <mat-form-field style="border-radius: 10px; width: 200px; background-color: black;" >
+            <mat-select style="border-radius: 10px;" id="payment-type-category-select" [(value)]="selectedCategory"  (selectionChange)="onCategoryChange($event)">
+                <mat-option *ngFor="let category of categoryList" [value]="category.value">
+                    {{ category.functionality }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>

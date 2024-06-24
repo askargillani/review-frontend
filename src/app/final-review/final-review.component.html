@@ -1,0 +1,198 @@
+<div style="display: flex;height: calc(100% - 100px);">
+    <div class="conversation">
+        <div class="margin-top-5" *ngFor="let statement of conversation">
+            <app-response *ngIf="statement.role==='gpt' || statement.role==='assistant'" [text]="statement.content"></app-response>
+            <app-prompted *ngIf="statement.role==='user'" [text]="statement.content"></app-prompted>
+        </div>
+    </div>
+    <div class="review-card">
+        <div class="name-section">
+            <span>Name: </span>
+            <span>{{employeeName}}</span>
+        </div>
+        <div class="tools">
+            <button style="margin-right: 20px; border-radius: 15px;" matSuffix>
+                <mat-icon style="color: black; border: white;">print</mat-icon>
+            </button>
+            <button style="margin-right: 20px; border-radius: 15px;" matSuffix>
+                <mat-icon>brush</mat-icon>
+            </button>
+            <button (click)="changeLockStatus(doc_locked)" *ngIf="doc_locked.value" style="margin-right: 20px; border-radius: 15px;" matSuffix>
+                <mat-icon>lock</mat-icon>
+            </button>
+            <button (click)="changeLockStatus(doc_locked)" *ngIf="!doc_locked.value" style="margin-right: 20px; border-radius: 15px;" matSuffix>
+                <mat-icon>lock_open</mat-icon>
+            </button>
+        </div>
+        <div class="review-section">
+            <div class="skill">
+                <div class="description">
+                    <span style="font-size: 25px; color: yellowgreen">Programming skills</span><br>
+                    <span>Command of programming knowledge and skills to perform assigned tasks effectively.</span>
+                </div>
+                <div class="scale">
+                    <span style="font-size: 25px; color: yellowgreen">Scale</span><br>
+                    <mat-radio-group aria-label="Select an option" class="white-radio-button" [formControl]="programmingSkillsScale">
+                        <mat-radio-button value="5"><span style="color: white">5</span></mat-radio-button>
+                        <mat-radio-button value="4"><span style="color: white">4</span></mat-radio-button>
+                        <mat-radio-button value="3"><span style="color: white">3</span></mat-radio-button>
+                        <mat-radio-button value="2"><span style="color: white">2</span></mat-radio-button>
+                        <mat-radio-button value="1"><span style="color: white">1</span></mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div class="comments">
+                    <span style="font-size: 25px; color: yellowgreen">Comments</span><br>
+                    <textarea rows="5" class="comments-text-Area" matInput placeholder="Enter Here" [formControl]="programmingSkillsComments" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+                </div>
+                <div class="skill-tools">
+                    <button style="margin-right: 20px; border-radius: 15px;margin-top: 10px" matSuffix>
+                        <mat-icon>brush</mat-icon>
+                    </button>
+                    <button (click)="changeLockStatus(programmingSkillsLocked)" *ngIf="programmingSkillsLocked.value" style="margin-right: 20px; border-radius: 15px; margin-top: 10px" matSuffix>
+                        <mat-icon>lock</mat-icon>
+                    </button>
+                    <button (click)="changeLockStatus(programmingSkillsLocked)" *ngIf="!programmingSkillsLocked.value" style="margin-right: 20px; border-radius: 15px; margin-top: 10px" matSuffix>
+                        <mat-icon>lock_open</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="skill">
+                <div class="description">
+                    <span style="font-size: 25px; color: yellowgreen">Sense of responsibility</span><br>
+                    <span>Command of programming knowledge and skills to perform assigned tasks effectively.</span>
+                </div>
+                <div class="scale">
+                    <span style="font-size: 25px; color: yellowgreen">Scale</span><br>
+                    <mat-radio-group aria-label="Select an option" class="white-radio-button" [formControl]="senseOfResponsibilityScale">
+                        <mat-radio-button value="5"><span style="color: white">5</span></mat-radio-button>
+                        <mat-radio-button value="4"><span style="color: white">4</span></mat-radio-button>
+                        <mat-radio-button value="3"><span style="color: white">3</span></mat-radio-button>
+                        <mat-radio-button value="2"><span style="color: white">2</span></mat-radio-button>
+                        <mat-radio-button value="1"><span style="color: white">1</span></mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div class="comments">
+                    <span style="font-size: 25px; color: yellowgreen">Comments</span><br>
+                    <textarea rows="5" class="comments-text-Area" matInput placeholder="Enter Here" [formControl]="senseOfResponsibilityComments" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+                </div>
+                <div class="skill-tools">
+                    <button style="margin-right: 20px; border-radius: 15px;margin-top: 10px" matSuffix>
+                        <mat-icon>brush</mat-icon>
+                    </button>
+                    <button (click)="changeLockStatus(senseOfResponsibilityLocked)" *ngIf="senseOfResponsibilityLocked.value" style="margin-right: 20px; border-radius: 15px; margin-top: 10px" matSuffix>
+                        <mat-icon>lock</mat-icon>
+                    </button>
+                    <button (click)="changeLockStatus(senseOfResponsibilityLocked)" *ngIf="!senseOfResponsibilityLocked.value" style="margin-right: 20px; border-radius: 15px; margin-top: 10px" matSuffix>
+                        <mat-icon>lock_open</mat-icon>
+                    </button>
+                    <button (click)="changeLockStatus(senseOfResponsibilityLocked)" *ngIf="!senseOfResponsibilityLocked.value" style="margin-right: 20px; border-radius: 15px; margin-top: 10px; color: rgb(255, 225, 0); background-color: transparent; border-color: transparent" matSuffix>
+                        <mat-icon>info</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="skill">
+                <div class="description">
+                    <span style="font-size: 25px; color: yellowgreen">Teamwork</span><br>
+                    <span>Command of programming knowledge and skills to perform assigned tasks effectively.</span>
+                </div>
+                <div class="scale">
+                    <span style="font-size: 25px; color: yellowgreen">Scale</span><br>
+                    <mat-radio-group aria-label="Select an option" class="white-radio-button" [formControl]="teamworkScale">
+                        <mat-radio-button value="5"><span style="color: white">5</span></mat-radio-button>
+                        <mat-radio-button value="4"><span style="color: white">4</span></mat-radio-button>
+                        <mat-radio-button value="3"><span style="color: white">3</span></mat-radio-button>
+                        <mat-radio-button value="2"><span style="color: white">2</span></mat-radio-button>
+                        <mat-radio-button value="1"><span style="color: white">1</span></mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div class="comments">
+                    <span style="font-size: 25px; color: yellowgreen">Comments</span><br>
+                    <textarea rows="5" class="comments-text-Area" matInput placeholder="Enter Here" [formControl]="teamworkComments" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+                </div>
+                <div class="skill-tools">
+                    <button style="margin-right: 20px; border-radius: 15px;margin-top: 10px" matSuffix>
+                        <mat-icon>brush</mat-icon>
+                    </button>
+                    <button (click)="changeLockStatus(teamworkLocked)" *ngIf="teamworkLocked.value" style="margin-right: 20px; border-radius: 15px; margin-top: 10px" matSuffix>
+                        <mat-icon>lock</mat-icon>
+                    </button>
+                    <button (click)="changeLockStatus(teamworkLocked)" *ngIf="!teamworkLocked.value" style="margin-right: 20px; border-radius: 15px; margin-top: 10px" matSuffix>
+                        <mat-icon>lock_open</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="skill">
+                <div class="description">
+                    <span style="font-size: 25px; color: yellowgreen">Self Learning</span><br>
+                    <span>Ability to independently acquire and apply new knowledge and skills.</span>
+                </div>
+                <div class="scale">
+                    <span style="font-size: 25px; color: yellowgreen">Scale</span><br>
+                    <mat-radio-group aria-label="Select an option" class="white-radio-button" [formControl]="selfLearningScale">
+                        <mat-radio-button value="5"><span style="color: white">5</span></mat-radio-button>
+                        <mat-radio-button value="4"><span style="color: white">4</span></mat-radio-button>
+                        <mat-radio-button value="3"><span style="color: white">3</span></mat-radio-button>
+                        <mat-radio-button value="2"><span style="color: white">2</span></mat-radio-button>
+                        <mat-radio-button value="1"><span style="color: white">1</span></mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div class="comments">
+                    <span style="font-size: 25px; color: yellowgreen">Comments</span><br>
+                    <textarea rows="5" class="comments-text-Area" matInput placeholder="Enter Here" [formControl]="selfLearningComments" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+                </div>
+                <div class="skill-tools">
+                    <button style="margin-right: 20px; border-radius: 15px;margin-top: 10px" matSuffix>
+                        <mat-icon>brush</mat-icon>
+                    </button>
+                    <button (click)="changeLockStatus(selfLearningLocked)" *ngIf="selfLearningLocked.value" style="margin-right: 20px; border-radius: 15px; margin-top: 10px" matSuffix>
+                        <mat-icon>lock</mat-icon>
+                    </button>
+                    <button (click)="changeLockStatus(selfLearningLocked)" *ngIf="!selfLearningLocked.value" style="margin-right: 20px; border-radius: 15px; margin-top: 10px" matSuffix>
+                        <mat-icon>lock_open</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="skill">
+                <div class="description">
+                    <span style="font-size: 25px; color: yellowgreen">Professional Appearance</span><br>
+                    <span>Maintaining a professional appearance and demeanor at work.</span>
+                </div>
+                <div class="scale">
+                    <span style="font-size: 25px; color: yellowgreen">Scale</span><br>
+                    <mat-radio-group aria-label="Select an option" class="white-radio-button" [formControl]="professionalAppearanceScale">
+                        <mat-radio-button value="5"><span style="color: white">5</span></mat-radio-button>
+                        <mat-radio-button value="4"><span style="color: white">4</span></mat-radio-button>
+                        <mat-radio-button value="3"><span style="color: white">3</span></mat-radio-button>
+                        <mat-radio-button value="2"><span style="color: white">2</span></mat-radio-button>
+                        <mat-radio-button value="1"><span style="color: white">1</span></mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div class="comments">
+                    <span style="font-size: 25px; color: yellowgreen">Comments</span><br>
+                    <textarea rows="5" class="comments-text-Area" matInput placeholder="Enter Here" [formControl]="professionalAppearanceComments" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+                </div>
+                <div class="skill-tools">
+                    <button style="margin-right: 20px; border-radius: 15px;margin-top: 10px" matSuffix>
+                        <mat-icon>brush</mat-icon>
+                    </button>
+                    <button (click)="changeLockStatus(professionalAppearanceLocked)" *ngIf="professionalAppearanceLocked.value" style="margin-right: 20px; border-radius: 15px; margin-top: 10px" matSuffix>
+                        <mat-icon>lock</mat-icon>
+                    </button>
+                    <button (click)="changeLockStatus(professionalAppearanceLocked)" *ngIf="!professionalAppearanceLocked.value" style="margin-right: 20px; border-radius: 15px; margin-top: 10px" matSuffix>
+                        <mat-icon>lock_open</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="input-div">
+    <mat-form-field class="input-field">
+        <mat-label>Type here</mat-label>
+        <input matInput [formControl]="prompt">
+        <button (click)="promptMessage()" style="margin-right: 20px; border-radius: 15px;"matSuffix id="resource-uploadDialog-Document-close-btn">
+                <mat-icon style="color: black; border: white;">arrow_upward</mat-icon>
+        </button>
+    </mat-form-field>
+</div>

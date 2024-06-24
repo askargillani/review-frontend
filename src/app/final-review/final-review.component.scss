@@ -1,0 +1,134 @@
+
+.conversation {
+    height: calc(100%);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    width: 30%;
+}
+
+.input-div {
+    display: flex;
+    justify-content: center; /* Centers the child element horizontally */
+    align-items: center; /* Centers the child element vertically if the row has height */
+    width: 100%;
+    height: 100px;
+}
+
+.input-field {
+    display: flex;
+    width: 80%;
+    border-radius: 50px;
+}
+
+:host ::ng-deep .mat-mdc-form-field-has-icon-suffix .mat-mdc-text-field-wrapper {
+    border-radius: 40px;
+}
+
+.review-card {
+    width: 70%;
+    background-color: #365E32;
+    border-radius: 10px;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.name-section {
+    font-size: 30px;
+    font-family: monospace;
+    color: white;
+}
+
+.tools {
+    margin-top: 10px;
+    background-color: #4F6F52;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.review-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.skill {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.description {
+    width: 25%;
+    border-left: 2px solid white;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.comments {
+    width: 30%;
+    border-left: 2px solid white;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    border-right: 2px solid white;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 10px;
+}
+
+.scale {
+    width: 25%;
+    border-left: 2px solid white;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    padding: 10px;
+}
+
+:host ::ng-deep .mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled:not(:checked) + .mdc-radio__background .mdc-radio__outer-circle {
+    border-color: white !important;
+  }
+  
+  :host ::ng-deep .mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled:not(:checked) + .mdc-radio__background .mdc-radio__inner-circle {
+    background-color: white !important;
+  }
+  
+  :host ::ng-deep .mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled:not(:checked) + .mdc-radio__background .mdc-radio__ripple {
+    background-color: white !important;
+  }
+  
+  :host ::ng-deep .mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:checked + .mdc-radio__background .mdc-radio__outer-circle,
+  :host ::ng-deep .mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:checked + .mdc-radio__background .mdc-radio__inner-circle {
+    background-color: white !important;
+  }
+
+.overall-comments {
+    margin-top: 10px;
+}
+  
+.skill-tools {
+    flex-direction: column;
+    display: flex;
+    padding-left: 5px;
+}
+
+.full-width {
+    width: 100%;
+    border-radius: 10px
+}
+
+.comments-text-Area {
+    width: 100%;
+    border-radius: 10px !important;
+    color: white;
+    padding-left: 5px;
+    padding-top: 5px;
+    background-color: transparent;
+    border: 2px solid white;
+    margin-top:10px;
+}
+
+  

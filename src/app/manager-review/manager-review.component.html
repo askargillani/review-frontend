@@ -1,0 +1,17 @@
+<div class="conversation">
+    <div class="margin-top-5" *ngFor="let statement of conversation">
+        <app-response *ngIf="statement.role==='gpt'" [text]="statement.content">
+        </app-response>
+        <app-prompted *ngIf="statement.role==='user'" [text]="statement.content">
+        </app-prompted>
+    </div>
+</div>
+<div class="input-div">
+    <mat-form-field class="input-field">
+        <mat-label>Type here</mat-label>
+        <input matInput [formControl]="prompt">
+        <button (click)="promptMessage()" style="margin-right: 20px; border-radius: 15px;"matSuffix id="resource-uploadDialog-Document-close-btn">
+                <mat-icon style="color: black; border: white;">arrow_upward</mat-icon>
+        </button>
+    </mat-form-field>
+</div>
