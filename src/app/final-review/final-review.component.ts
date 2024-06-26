@@ -84,11 +84,55 @@ export class FinalReviewComponent implements OnInit {
         this.conversationId = data.conversationId;
         this.impactsList = data.impacts
         this.employeeName = data.name
-        if(this.impactsList.includes(0)) {
+        if(this.impactsList.includes(0) && !this.programmingSkillsLocked?.value) {
           this.reviewService.updateProgrammingSkills(this.conversationId, this.employeeName).subscribe({
             next: (data: any) => {
-              this.programmingSkillsComments = data.comments;
-              this.programmingSkillsScale = data.scale
+              this.programmingSkillsComments.setValue( data.comments);
+              this.programmingSkillsScale.setValue(data.scale);
+            },
+            error: (err: any) => {
+              console.log("error occurred", err);
+            }
+          });
+        }
+        if(this.impactsList.includes(1) && !this.senseOfResponsibilityLocked?.value) {
+          this.reviewService.updateSenseOfResponsibility(this.conversationId, this.employeeName).subscribe({
+            next: (data: any) => {
+              this.senseOfResponsibilityComments.setValue(data.comments);
+              this.senseOfResponsibilityScale.setValue(data.scale);
+            },
+            error: (err: any) => {
+              console.log("error occurred", err);
+            }
+          });
+        }
+        if(this.impactsList.includes(2) && !this.teamworkLocked?.value) {
+          this.reviewService.updateTeamWork(this.conversationId, this.employeeName).subscribe({
+            next: (data: any) => {
+              this.teamworkComments.setValue(data.comments);
+              this.teamworkScale.setValue(data.scale);
+            },
+            error: (err: any) => {
+              console.log("error occurred", err);
+            }
+          });
+        }
+        if(this.impactsList.includes(3) && !this.selfLearningLocked?.value) {
+          this.reviewService.updateSelfLearning(this.conversationId, this.employeeName).subscribe({
+            next: (data: any) => {
+              this.selfLearningComments.setValue(data.comments);
+              this.selfLearningScale.setValue(data.scale);
+            },
+            error: (err: any) => {
+              console.log("error occurred", err);
+            }
+          });
+        }
+        if(this.impactsList.includes(4) && !this.professionalAppearanceLocked?.value) {
+          this.reviewService.updateProfessionalAppearance(this.conversationId, this.employeeName).subscribe({
+            next: (data: any) => {
+              this.professionalAppearanceComments.setValue(data.comments);
+              this.professionalAppearanceScale.setValue(data.scale)
             },
             error: (err: any) => {
               console.log("error occurred", err);
@@ -101,4 +145,55 @@ export class FinalReviewComponent implements OnInit {
       }
     });
   }
+
+  saveReview() {
+    let payload = {
+      employeeName: this.employeeName,
+      programmingSkillsScale: this.programmingSkillsScale.value,
+      programmingSkillsComments: this.programmingSkillsComments.value,
+      senseOfResponsibilityScale: this.senseOfResponsibilityScale.value,
+      senseOfResponsibilityComments: this.senseOfResponsibilityComments.value,
+      teamworkScale: this.teamworkScale.value,
+      teamworkComments: this.teamworkComments.value,
+      selfLearningScale: this.selfLearningScale.value,
+      selfLearningComments: this.selfLearningComments.value,
+      professionalAppearanceScale: this.professionalAppearanceScale.value,
+      professionalAppearanceComments: this.professionalAppearanceComments.value
+    };
+
+    this.reviewService.saveReview(payload).subscribe({
+      next: (data: any) => {
+        console.log('Review saved successfully', data);
+      },
+      error: (err: any) => {
+        console.log('Error occurred while saving review', err);
+      }
+    });
+  }
+
+  compareReview() {
+    let payload = {
+      employeeName: this.employeeName,
+      programmingSkillsScale: this.programmingSkillsScale.value,
+      programmingSkillsComments: this.programmingSkillsComments.value,
+      senseOfResponsibilityScale: this.senseOfResponsibilityScale.value,
+      senseOfResponsibilityComments: this.senseOfResponsibilityComments.value,
+      teamworkScale: this.teamworkScale.value,
+      teamworkComments: this.teamworkComments.value,
+      selfLearningScale: this.selfLearningScale.value,
+      selfLearningComments: this.selfLearningComments.value,
+      professionalAppearanceScale: this.professionalAppearanceScale.value,
+      professionalAppearanceComments: this.professionalAppearanceComments.value
+    };
+
+    this.reviewService.compareReview(payload).subscribe({
+      next: (data: any) => {
+        this.conversation.push({ "role": "gpt", "content": data.response });
+      },
+      error: (err: any) => {
+        console.log('Error occurred while saving review', err);
+      }
+    });
+  }
+  
 }
